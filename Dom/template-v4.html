@@ -1,0 +1,31 @@
+<!-- EVITANDO RE-RENDERIZAÇÃO COM V-ONCE -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p v-once>{{titulo}}</p> 
+    <p>{{saudacao()}}</p> 
+    <a v-bind:href="link">Google</a>
+</div>
+
+<!-- 
+    SEMPRE QUE HÁ UMA MUDANÇA NO VALOR A VUE É ATUALIZADA
+    PARA QUE SÓ RENDERIZE UMA VEZ MESMO QUE HAJA MUDANÇA, UTILIZAMOS A DIRETIVA V-ONCE
+    Não olhará mais para esse elemento, ou seja, não atualizará o conteúdo da tag que utilizar a diretiva
+ -->
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {  
+            titulo: 'Usando VueJS 2!', 
+            link: 'http://google.com', 
+        },
+        methods: {  
+            saudacao: function(){
+                this.titulo = 'Bom dia!';
+                return this.titulo; 
+            }
+        }
+    });
+</script>

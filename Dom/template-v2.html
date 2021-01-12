@@ -1,0 +1,27 @@
+<!-- ACESSANDO DADOS NA INSTÂNCIA -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{titulo}}</p>
+    <!-- Espera-se uma string aqui dentro do padrão Double Mustache, seja um avariável ou uma função que retorna algo-->
+    <!-- No final será convertido em string, mesmo se passar outra coisa -->
+    <p>{{saudacao()}}</p> 
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {  // NÃO SE PODE TER CONFLITO NOS NOMES DE VARIÁVEIS E MÉTODOS
+            titulo: 'Usando VueJS 2!',  
+        },
+        methods: {  // Métodos que serão executados quando, por exemplo, acontecer um evento no HTML
+            saudacao: function(){
+                // Para acessar o titulo, utilizamos o this
+                // A partir do this, tbm conseguimos acessar funções, criadas em methods
+                console.log(this);  // representa a instância do Vue
+                return this.titulo; 
+            }
+        }
+    });
+</script>

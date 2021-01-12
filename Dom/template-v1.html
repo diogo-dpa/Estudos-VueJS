@@ -1,0 +1,25 @@
+<!-- SINTAXE DE TEMPLATE E INSTÂNCIA VUEJS TRABALHANDO JUNTOS -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{titulo}}</p>
+    <!-- Com parenteses para instanciar -->
+    <!-- Espera-se uma string aqui dentro do padrão Double Mustache, seja um avariável ou uma função que retorna algo-->
+    <!-- No final será convertido em string, mesmo se passar outra coisa -->
+    <p>{{saudacao()}}</p> 
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {  // Propriedade para armazenar as variáveis
+            titulo: 'Usando VueJS 2!',
+        },
+        methods: {  // Métodos que serão executados quando, por exemplo, acontecer um evento no HTML
+            saudacao: function(){
+                return 'Boa semana!' 
+            }
+        }
+    });
+</script>

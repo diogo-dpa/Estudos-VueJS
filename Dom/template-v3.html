@@ -1,0 +1,37 @@
+<!-- BINDING DE ATRIBUTOS -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <!-- O conteúdo da tag p é um valor textual -->
+    <p>{{titulo}}</p> 
+    <p>{{saudacao()}}</p> 
+    <!-- Utiliza-se o v-bind para linkar o atributo da tag e algo que está dentro da instância do Vue  -->
+    <!-- Diretiva -->
+    <!-- Podemos criar um propriedade com as diretivas
+        <a v-bind:blabla="link">Google</a>
+    -->
+    <a v-bind:href="link">Google</a>
+</div>
+
+<!--  
+    DIRETIVA:
+    - Uma propriedade personalizada não nativa do HTML mas que permite criar novas propriedades.
+    - São interpretadas pelo Vue
+    <p c3r-bind="abc">{{ saudacao() }}</p>
+ -->
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {  
+            titulo: 'Usando VueJS 2!', 
+            link: 'http://google.com', 
+        },
+        methods: {  
+            saudacao: function(){
+                return this.titulo; 
+            }
+        }
+    });
+</script>

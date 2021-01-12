@@ -1,0 +1,32 @@
+<!-- COMO IMPRIMIR HTML PURO -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p v-once>{{titulo}}</p> 
+    <p>{{saudacao()}}</p> 
+    <a v-bind:href="link">Google</a>
+    <hr>
+    <!-- COLOCO O NOME DA PROPRIEDADE QUE QUERO QUE SEJA INTERPRETADA COM HTML -->
+    <!--  COLOCARÁ O CONTEÚDO QUE ELE LEU DENTRO DA VARIÁVEL -->
+    <!-- o que for interpretado será colocado dentro da tag p -->
+    <p v-html="linkHTML"></p>
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {  
+            titulo: 'Usando VueJS 2!', 
+            link: 'http://google.com',
+            linkHTML: '<a href="http://google.com.br">Google</a>'
+        },
+        methods: {  
+            saudacao: function(){
+                this.titulo = 'Bom dia!';
+                return this.titulo; 
+            }
+        }
+    });
+</script>
