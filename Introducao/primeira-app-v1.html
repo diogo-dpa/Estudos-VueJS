@@ -1,14 +1,22 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <div id="app">
+    <!-- Diretiva v-on:input, para tratar de eventos -->
+    <input type="text" v-on:input="alterarTitulo" />
     <p>{{titulo}}</p>
 </div>
 
 <script>
     new Vue({
         el: '#app',
-        data: {
+        data: {  // Propriedade para armazenar as variáveis
             titulo: 'Usando VueJS 2!',
+        },
+        methods: {  // Métodos que serão executados quando, por exemplo, acontecer um evento no HTML
+            alterarTitulo: function(event){
+                // Para acessar dentro da instância do Vue, utilizamos o THIS na frente da variável. Conseguimos acessar o título dessa forma
+                this.titulo = event.target.value
+            }
         }
     });
 </script>
