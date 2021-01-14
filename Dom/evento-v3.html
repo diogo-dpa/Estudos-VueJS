@@ -1,0 +1,38 @@
+<!-- PASSANDO NOSSOS PRÓPRIOS ARGUMENTOS COM EVENTOS -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{contador}}</p>
+
+    <p v-on:mousemove="atualizarXY">Mouse: {{x}} e {{y}}</p>
+
+    <!--  Passaremos o valor que será incrementado na soma -->
+    <!-- O EVENTO deixa de ser passado quando passamos alguma variável para a função  -->
+    <!-- Caso queiramos passar o evento, utilizamos a palavra reservada $event -->
+
+    <!-- É comum utilizar algumas palavras reservadas com o $ dentro do Vue -->
+    <button v-on:click="somar(5, $event)">Somar 5</button>
+    <button @click="somar">Somar 5</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {  
+            contador: 0,
+            x: 0,
+            y: 0,
+        },
+        methods: {  
+            somar(passo, evento){  // Recebemos o passo pelo evento
+                console.log(evento)
+                this.contador += 5;
+            },
+            atualizarXY(event){
+                this.x = event.clientX;
+                this.y = event.clientY;
+            }
+        }
+    });
+</script>

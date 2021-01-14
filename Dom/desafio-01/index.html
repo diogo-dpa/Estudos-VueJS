@@ -5,6 +5,7 @@
     <p>Usando VueJS - {{this.nome}} {{this.idade}}</p>
     
     <!-- 2) Exiba sua idade multiplicada por 3 -->
+    <p>{{this.idade * 3}</p>
     <p>{{idadeMultiplicadaPor3()}}</p>
     
     <!-- 3) Chame uma função para exibir um número randomico
@@ -22,6 +23,9 @@
         <!-- Consigo alterar o valor do INPUT COM V-MODEL -->
         <!-- V-ON:INPUT TBM FUNCIONA PORÉM É ANTIGO -->
         <input type="text" v-model="nome">  
+
+        <!-- Aqui somente inicializa o valor do input com a variável -->
+        <input type="text" :value="nome">  
     </div>
 </div>
 <script src="app.js"></script>

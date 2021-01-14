@@ -1,0 +1,58 @@
+<!-- EVENTOS DE TECLADO -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{contador}}</p>
+
+    <p v-on:mousemove="atualizarXY">
+        Mouse: {{x}} e {{y}}
+
+        <span v-on:mousemove="parar1">PARAR AQUI!!! (SEM MODIFICADORES DE EVENTO)</span>
+        <span v-on:mousemove.stop="">PARAR AQUI!!! (COM MODIFICADORES DE EVENTO)</span>
+    </p>
+
+    <a v-on:click.prevent="" href="https://google.com">Google COM MODIFICADOR DE EVENTO E V-ON</a>
+    <a @click.prevent="" href="https://google.com">Google COM MODIFICADOR DE EVENTO E @EVENTO</a>
+    <a @click="naoNavegar" href="https://google.com">Google 3ª forma</a>
+
+    <button v-on:click="somar(5, $event)">Somar 5</button>
+    <button @click="somar">Somar 5</button>
+
+    <hr>
+    <!-- Toda vez que uma tecla for solta, a função será chamada -->
+    <!-- Modificador de evento para ativar somente quando o usuário clicar enter -->
+    <input type="text" v-on:keyup.enter="exibirAlerta"/>
+    <!-- Modificador de evento para ativar somente quando o usuário clicar enter e alt JUNTAS -->
+    <input type="text" v-on:keyup.enter.alt="exibirAlerta"/>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {  
+            contador: 0,
+            x: 0,
+            y: 0,
+        },
+        methods: {  
+            somar(passo, evento){  // Recebemos o passo pelo evento
+                console.log(evento)
+                this.contador += 5;
+            },
+            atualizarXY(event){
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            parar1(event){
+                event.stopPropagation();
+            },
+            naoNavegar(event){
+                event.preventDefault();
+            },
+            exibirAlerta(){
+                alert('Estou te alertando')
+            }
+        }
+    });
+</script>

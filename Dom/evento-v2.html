@@ -1,0 +1,37 @@
+<!-- OBTENDO DADOS DO EVENTO -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{contador}}</p>
+    <p v-once>Com V-Once: {{contador}}</p>
+
+    <!--  Iremos interpolar os valores de X e Y -->
+    <!--  Pegaremos as posíções X e Y do mouse quando passarmos o mouse em cima -->
+    <p v-on:mousemove="atualizarXY">Mouse: {{x}} e {{y}}</p>
+
+    <!--  SEMPRE QUE UM EVENTO É INTERCEPTADO PELO VUE, POR PADRÃO A VARIÁVEL EVENTO É PASSADA -->
+    <button v-on:click="somar">Somar 1</button>
+    <button @click="somar">Somar 1</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {  
+            contador: 0,
+            x: 0,
+            y: 0,
+        },
+        methods: {  // Métodos que serão executados quando, por exemplo, acontecer um evento no HTML
+            somar(event){
+                console.log(event)
+                this.contador++;
+            },
+            atualizarXY(event){
+                this.x = event.clientX;
+                this.y = event.clientY;
+            }
+        }
+    });
+</script>
