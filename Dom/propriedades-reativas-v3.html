@@ -1,0 +1,61 @@
+<!-- MONITORANDO AS MUDANÇAS -->
+
+<!-- VUE INSTANCE: USADA QUANDO QUEREMSO MONITORAR DE UMA DETERMINADA VARIÁVEL E FAZER ALGO EM RESPOSTA A ESSAS ALTERAÇÕES -->
+<!-- NO CASO DO WATCH PRECISA TER CONFLITO DE NOMES PARA INDICAR O QUE VC QUER MONITORAR  -->
+<!-- DIFERENTE DA COMPUTED PROPS POIS O MÉTODO DA MESMA DEVE RETORNAR ALGO SÍNCRONO -->
+
+<!-- Monitora-se o valor tendo em memória os valores antigos e novos -->
+<!-- Não necessariamente precisa retornar algo!! -->
+<!-- AÇÕES ASSÍNCRONAS -->
+
+<!-- moral da historia:
+
+    Propriedades Computadas são síncronas (obrigatoriamente vc tem que retornar um valor)
+    Watch: Monitora as alterações de alguma propriedade (assíncrono) (utilizado para faezr chamada ao servidor)
+
+-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <button v-on:click="contador2++">Aumentar 2</button>
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="diminuir">Diminuir</button>
+    <p>Contador: {{contador}} | {{contador2}}</p>
+
+    <!-- Instanciamos as computed props como variaveis e não como funções-->
+    <p>Resultado: {{resultado}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            contador2: 0,
+        },
+        computed: {
+            resultado(){
+                return this.contador >= 5? 'Maior ou igual a 5': 'Mneor que 5'
+            }
+        },
+        watch: {
+            // Queremos monitorar a variável contador
+            contador(novoValor, antigoValor){
+                console.log(novoValor, antigoValor)
+                const vueInstance = this; // associa o this à instância do Vue (PODE USAR ARROW FUCNTION PARA NÃO USAR DESSA FORMA)
+                setTimeout(function(){
+                    vueInstance.contador = 0;  // vai zerar o contador depois de 2 seg
+                }, 2000);
+            }
+        },
+        methods: {
+            aumentar(){
+                this.contador++;
+            },
+            diminuir(){
+                this.contador--;
+            },
+        }
+
+    });
+</script>

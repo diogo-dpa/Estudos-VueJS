@@ -1,0 +1,44 @@
+<!-- PROPRIEDADES COMPUTADAS -->
+
+<!-- UTILIZAMOS O COMPUTED PROPS PARA VARIAVEIS COMPUTADAS, OU SEJA, QUANDO SOMENTE QUEREMOS QUE SEJA CHAMADO NA HORA CERTA -->
+<!-- CHAMAMOS A MESMA COMO VARIAVEL E NAO COMO FUNÇÃO  -->
+<!-- SUA FINALIDADE É FAZER COM QUE NAO TENHA UM GASTO DESNECESSÁRIO CALCULANDO COISAS QUE NAO INTERFEREM -->
+
+<!-- COM AS COMPUTED PROPS, O VUE CONSEGUE ENTENDER QUAIS DADOS ALTERARAM E AÍ SIM CHAMA A FUNÇÃO CERTA -->
+<!-- CHAMOU A FUNÇÃO, O RETORNO PRECISA ESTAR PRONTO  -->
+<!-- AÇÕES SÍNCRONAS -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <button v-on:click="contador2++">Aumentar 2</button>
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="diminuir">Diminuir</button>
+    <p>Contador: {{contador}} | {{contador2}}</p>
+
+    <!-- Instanciamos as computed props como variaveis e não como funções-->
+    <p>Resultado: {{resultado}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            contador2: 0,
+        },
+        computed: {
+            resultado(){
+                return this.contador >= 5? 'Maior ou igual a 5': 'Mneor que 5'
+            }
+        },
+        methods: {
+            aumentar(){
+                this.contador++;
+            },
+            diminuir(){
+                this.contador--;
+            },
+        }
+
+    });
+</script>
