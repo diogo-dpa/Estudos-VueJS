@@ -1,0 +1,29 @@
+<!-- TWO WAY DATA BINDING -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- Neste caso, o sentido da alteração é mudando o Vue Instance, alterará o Vue gerado-->
+<!-- Neste caso, o sentido é o framework Vue alterando os templates HTML -->
+
+<div id="app">
+    <p>{{titulo}}</p>
+    <!-- Fará um bind desta variável titulo neste value input -->
+    <input type="text" v-bind:value="titulo"
+        v-on:input="titulo = $event.target.value"
+    >
+    <!-- TWO WAY DATA BINDING IMPLEMENTADO: BINDING DE DUAS DIREÇÕES -->
+    <!-- HTML atualiza os dados do JS e o JS atualiza os dados do HTML -->
+    <!-- FORMA MAIS SIMPLES UTILIZANDO O VUE MODERNO -->
+    <hr>
+    <p>Utilizando Vue moderno</p>
+    <input type="text" v-model="titulo">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {  // Propriedade para armazenar as variáveis
+            titulo: 'Usando VueJS 2!',
+        }
+    });
+</script>
